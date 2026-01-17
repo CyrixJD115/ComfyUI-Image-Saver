@@ -49,8 +49,7 @@ def apply_custom_time_format(filename: str) -> str:
     now = datetime.now()
     # Pattern to match %time_format<XXX> where XXX is any strftime format string
     # Use negative lookahead to exclude %time_format itself from variable delimiters
-    pattern = r'%time_format<(.+?)>(?=\s*(?!%time_format\b)%[a-z_]{4,}|\s*$|(?=\s*%time_format))'
-
+    pattern = r'%time_format<([^>]*)>'
     def replace_format(match):
         format_str = match.group(1)
         try:
